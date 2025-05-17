@@ -2,7 +2,7 @@
 
 # 🚀 Dockerized Laravel Project (No Sail)
 
-This project contains a simple setup to run a Laravel application using Docker (without Laravel Sail). It includes:
+This project contains a simple Customer CRUD. It includes:
 
 - **Laravel (API backend)**
 - **Angular (frontend)**
