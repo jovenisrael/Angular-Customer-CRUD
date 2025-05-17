@@ -1,0 +1,35 @@
+# ------------------------
+# Node (customer-frontend)
+# ------------------------
+customer-frontend/node_modules/
+customer-frontend/dist/
+customer-frontend/.angular/
+customer-frontend/tmp/
+customer-frontend/out-tsc/
+customer-frontend/.vscode/
+customer-frontend/.idea/
+customer-frontend/.history/
+customer-frontend/npm-debug.log*
+customer-frontend/yarn-error.log*
+customer-frontend/*.log
+customer-frontend/coverage/
+
+# ------------------------
+# Laravel (backend)
+# ------------------------
+backend/vendor/
+backend/.env
+backend/storage/
+backend/node_modules/
+backend/public/storage
+backend/.vscode/
+backend/.idea/
+
+# ------------------------
+# System & Editor Files
+# ------------------------
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.swo

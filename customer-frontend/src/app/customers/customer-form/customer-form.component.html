@@ -1,0 +1,50 @@
+<div class="container mt-4">
+    <h2>{{ isEdit ? 'Edit' : 'Create' }} Customer</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  
+      <div class="mb-3">
+        <label for="firstname" class="form-label">First Name</label>
+        <input formControlName="firstname" id="firstname" class="form-control" />
+        <div *ngIf="form.get('firstname')?.touched && form.get('firstname')?.errors" class="text-danger">
+          <div *ngIf="form.get('firstname')?.errors?.['required']">First name is required.</div>
+          <div *ngIf="form.get('firstname')?.errors?.['apiError']">{{ form.get('firstname')?.errors?.['apiError'] }}</div>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="lastname" class="form-label">Last Name</label>
+        <input formControlName="lastname" id="lastname" class="form-control" />
+        <div *ngIf="form.get('lastname')?.touched && form.get('lastname')?.errors" class="text-danger">
+          <div *ngIf="form.get('lastname')?.errors?.['required']">Last name is required.</div>
+          <div *ngIf="form.get('lastname')?.errors?.['apiError']">{{ form.get('lastname')?.errors?.['apiError'] }}</div>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input formControlName="email" id="email" class="form-control" />
+        <div *ngIf="form.get('email')?.touched && form.get('email')?.errors" class="text-danger">
+          <div *ngIf="form.get('email')?.errors?.['required']">Email is required.</div>
+          <div *ngIf="form.get('email')?.errors?.['email']">Please enter a valid email.</div>
+          <div *ngIf="form.get('email')?.errors?.['apiError']">{{ form.get('email')?.errors?.['apiError'] }}</div>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input formControlName="contact_number" id="contact_number" class="form-control" />
+        <div *ngIf="form.get('contact_number')?.touched && form.get('contact_number')?.errors" class="text-danger">
+          <div *ngIf="form.get('phone')?.errors?.['apiError']">{{ form.get('contact_number')?.errors?.['apiError'] }}</div>
+        </div>
+      </div>
+  
+      <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
+        {{ isEdit ? 'Update' : 'Create' }}
+      </button>
+  
+      <button class="btn btn-secondary ms-2" type="button" (click)="router.navigate(['/customers'])">
+        Cancel
+      </button>
+    </form>
+  </div>
+  

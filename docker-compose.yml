@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: customer_api
+    working_dir: /var/www
+    volumes:
+      - ./backend:/var/www
+    depends_on:
+      - db
+      - searcher
+    expose:
+      - 9000
+    networks:
+      - internal
+
+  controller:
+    image: nginx:alpine
+    container_name: customer_controller
+    ports:
+      - 8081:80
+    volumes:
+      - ./backend:/var/www
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - api
+    networks:
+      - internal
+
+  db:
+    image: mysql:8.0
+    container_name: customer_db
+    environment:
+      MYSQL_DATABASE: customer
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - internal
+
+  searcher:
+    image: elasticsearch:8.11.3
+    container_name: customer_searcher
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - internal
+
+volumes:
+  dbdata:
+  esdata:
+
+networks:
+  internal:

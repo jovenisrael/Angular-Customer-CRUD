@@ -1,0 +1,6 @@
+$client = \Elasticsearch\ClientBuilder::create()->setHosts(config('elasticsearch.hosts'))->build();
+$client->info();
+
+$client = \Elastic\Elasticsearch\ClientBuilder::create()->setHosts(config('elasticsearch.hosts'))->build();
+$client->info();
+
